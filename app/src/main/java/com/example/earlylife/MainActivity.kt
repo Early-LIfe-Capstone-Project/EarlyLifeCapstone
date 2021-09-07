@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.earlylife.fragments.HomeFragment
 import com.example.earlylife.fragments.QuiltDetailsFragment
 import com.example.earlylife.fragments.SettingsFragment
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -30,8 +31,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        //val actionBarView = findViewById<MaterialToolbar>(R.id.actionBarView)
-        //setSupportActionBar(actionBarView)
+        val actionBarView = findViewById<MaterialToolbar>(R.id.actionBarView)
+        setSupportActionBar(actionBarView)
 
 
     }
