@@ -1,4 +1,4 @@
-package com.example.earlylife
+package classes
 
 class Activity constructor (
             var activityName: String,
