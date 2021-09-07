@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">EarlyLife</string>
-    <string name="hello_word">Hello Dylan</string>
+    <string name="app_name">Early Life</string>
+    <string name="home">Home</string>
+    <string name="quilt_details">Quilt Details</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">Settings</string>
+    <string name="sync_quilt">Sync Quilt</string>
+    <string name="download_full_user_manual">Download Full User Manual (4MB)</string>
 </resources>
