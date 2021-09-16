@@ -1,4 +1,4 @@
-package classes
+package com.example.earlylife.classes
 
 import java.nio.file.Path
 import kotlin.io.path.fileSize
