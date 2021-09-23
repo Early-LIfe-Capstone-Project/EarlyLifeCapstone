@@ -1,4 +1,4 @@
-package com.example.earlylife.classes
+package com.example.earlylife
 
 class WeeklyReport {
     fun generateReport(activityList: ActivityList): Map<String, Float> {
