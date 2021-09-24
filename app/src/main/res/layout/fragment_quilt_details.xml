@@ -11,26 +11,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/quilt_details"
-        android:textSize="36sp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/download_manual_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="144dp"
         android:layout_marginEnd="145dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginRight="145dp"
         android:layout_marginBottom="125dp"
-        android:backgroundTint="@color/yellow_green"
+        android:backgroundTint="?attr/colorSecondary"
         android:text="@string/download_full_user_manual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="144dp"
+        android:layout_marginRight="145dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
