@@ -1,0 +1,3 @@
+Identify Shapes,Details,ECD,tip1,tip2,tip3
+Complete Pattern,Details,ECD,tip1,tip2,tip3
+Positions,Details,ECD,tip1,tip2
