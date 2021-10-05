@@ -23,8 +23,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import android.content.DialogInterface
-
-
+import com.example.earlylife.WeeklyReport
 
 
 class HomeFragment : Fragment() {
@@ -55,11 +54,19 @@ class HomeFragment : Fragment() {
             getData()
         }
 
+        val wr = WeeklyReport()
+
+        val report = wr.generateReport(activityList)
+
         barList = ArrayList()
-        barList.add(BarEntry(1f, 500f))//blue
-        barList.add(BarEntry(2f, 100f))//green
-        barList.add(BarEntry(3f, 300f))//orange
-        barList.add(BarEntry(4f, 800f))//red
+        var i =0f
+
+        for ((s, int)in report){
+            i++
+            barList.add(BarEntry(i,int ))
+
+
+        }
 
         barDataSet = BarDataSet(barList, "")
         //remove legend and description
