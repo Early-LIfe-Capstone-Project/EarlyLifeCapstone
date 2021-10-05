@@ -1,14 +1,22 @@
 package com.example.earlylife
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.earlylife.fragments.HomeFragment
 import com.example.earlylife.fragments.QuiltDetailsFragment
+import com.example.earlylife.model.Quilt
+import com.example.earlylife.retrofit.RetrofitService
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +42,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         activityList = appDataHandler.loadActivityData()
+        getData()
+
     }
 
     private fun replaceFragment (fragment: Fragment) {
@@ -51,5 +61,33 @@ class MainActivity : AppCompatActivity() {
         val isMetered = (context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager).isActiveNetworkMetered
 
     }
+
+    fun getData () {
+    val permission = true
+        if (permission) {
+            val compositeDisposable = CompositeDisposable()
+            compositeDisposable.add(
+                RetrofitService.ServiceBuilder.buildService().getShapes()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({ response -> onResponse(response) }, { t -> onFailure(t) })
+            )
+        }
+
+    }
+
+    private fun onFailure(t: Throwable) {
+        Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
+        Log.d(TAG, "onFailure: " + t.message)
+
+    }
+
+    private fun onResponse(response: Quilt) {
+
+        activityList.update(response)
+
+    }
+
+
 
 }

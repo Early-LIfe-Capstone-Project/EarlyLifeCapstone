@@ -23,7 +23,7 @@ class UsageStatisticsTest {
     @Test
     fun usageStats_updatesStats() {
         val changedUsageStatistics = sampleUsageStatistics
-        changedUsageStatistics.update()
+        changedUsageStatistics.update(activityName, response)
         val expected = UsageStatistics(lastWeeklyUsage = 0F, weeklyUsage = 1.2F)
         assertEquals(expected, changedUsageStatistics)
     }

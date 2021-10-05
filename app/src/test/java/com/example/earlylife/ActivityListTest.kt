@@ -28,15 +28,15 @@ class ActivityListTest {
     @Test
     fun activityList_updatesStats() {
         val changedActivity1 = sampleActivity1
-        changedActivity1.update()
+        changedActivity1.update(response)
 
         val changedActivity2 = sampleActivity2
-        changedActivity2.update()
+        changedActivity2.update(response)
 
         val expected = listOf(changedActivity1, changedActivity2)
 
         val changedActivityList = sampleActivityList
-        changedActivityList.update()
+        changedActivityList.update(response)
         assertEquals(expected, changedActivityList.activityList)
     }
 

@@ -1,5 +1,7 @@
 package com.example.earlylife
 
+import com.example.earlylife.model.Quilt
+
 class Activity constructor(
             var activityName: String,
             var activityDetails: String,
@@ -8,8 +10,8 @@ class Activity constructor(
             var usage: UsageStatistics = UsageStatistics()
         ){
 
-    fun update(){
-        usage.update()
+    fun update(response: Quilt) {
+        usage.update(activityName,response)
     }
 
     fun generateTip(): String{

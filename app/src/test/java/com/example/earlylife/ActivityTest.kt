@@ -30,8 +30,8 @@ class ActivityTest {
     fun activity_updatesStats() {
         val changedActivity = sampleActivity
         val changedUsage = sampleUsageStatistics
-        changedActivity.update()
-        changedUsage.update()
+        changedActivity.update(response)
+        changedUsage.update(activityName, response)
         assertEquals(sampleUsageStatistics, sampleActivity.usage)
     }
 

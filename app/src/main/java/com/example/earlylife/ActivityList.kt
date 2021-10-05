@@ -1,5 +1,7 @@
 package com.example.earlylife
 
+import com.example.earlylife.model.Quilt
+
 class ActivityList constructor (var activityList: List<Activity>) {
     var totalTime = 0F
     var lastTotalTime = 0F
@@ -9,9 +11,9 @@ class ActivityList constructor (var activityList: List<Activity>) {
         lastTotalTime = getLastWeeklyUsage().sum()
     }
 
-    fun update(){
+    fun update(response: Quilt) {
         for (activity in activityList){
-            activity.update()
+            activity.update(response)
         }
     }
 
