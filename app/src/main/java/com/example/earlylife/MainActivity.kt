@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val quiltDetailsFragment = QuiltDetailsFragment()
+    private val appDataHandler = AppDataHandler(this)
+    private lateinit var activityList: ActivityList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        activityList = appDataHandler.loadActivityData()
     }
 
     private fun replaceFragment (fragment: Fragment) {

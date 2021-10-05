@@ -48,4 +48,11 @@ class ActivityList constructor (var activityList: List<Activity>) {
     fun getActivity(index: Int): Activity{
         return activityList[index]
     }
+
+    fun getActivity(name: String): Activity{
+        val activityNames = getActivityNames()
+        val index = activityNames.indexOf(name)
+
+        return activityList[index]
+    }
 }
