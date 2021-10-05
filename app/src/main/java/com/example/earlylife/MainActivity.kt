@@ -64,7 +64,8 @@ class MainActivity : AppCompatActivity() {
 
     fun getData () {
     val permission = true
-        if (permission) {
+    val connected = true
+        if ((permission)&&(connected)) {
             val compositeDisposable = CompositeDisposable()
             compositeDisposable.add(
                 RetrofitService.ServiceBuilder.buildService().getShapes()
@@ -73,6 +74,8 @@ class MainActivity : AppCompatActivity() {
                     .subscribe({ response -> onResponse(response) }, { t -> onFailure(t) })
             )
         }
+        else if (!connected){print("PLEASE CONNECT TO QUILT")} //TODO Popup for failed connection
+        else if (!permission){print("YOU CANNOT DO THIS WITHOUT GIVING PERMISSION")} //TODO popup for permission request
 
     }
 
