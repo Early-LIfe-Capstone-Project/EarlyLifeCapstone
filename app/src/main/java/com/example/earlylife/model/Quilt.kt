@@ -1,13 +1,8 @@
 package com.example.earlylife.model
 
-class Quilt
-{
-    var name: String=""
-    var activityID=""
-    var activityName=""
-    var timeOnTaks=""
-    var accessed=""
-
-
-
-}
+    data class Quilt(
+        val LearnNumbers: LearnNumbers,
+        val LearnShapes: LearnShapes,
+        val Love: Love,
+        val MarchShapes: MarchShapes
+    )
