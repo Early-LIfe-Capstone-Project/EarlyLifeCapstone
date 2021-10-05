@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val quiltDetailsFragment = QuiltDetailsFragment()
     private val appDataHandler = AppDataHandler(this)
-    private lateinit var activityList: ActivityList
+    lateinit var activityList: ActivityList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +64,7 @@ class MainActivity : AppCompatActivity() {
 
     fun getData () {
     val permission = true
-    val connected = true
-        if ((permission)&&(connected)) {
+        if (permission) {
             val compositeDisposable = CompositeDisposable()
             compositeDisposable.add(
                 RetrofitService.ServiceBuilder.buildService().getShapes()
@@ -74,8 +73,6 @@ class MainActivity : AppCompatActivity() {
                     .subscribe({ response -> onResponse(response) }, { t -> onFailure(t) })
             )
         }
-        else if (!connected){print("PLEASE CONNECT TO QUILT")} //TODO Popup for failed connection
-        else if (!permission){print("YOU CANNOT DO THIS WITHOUT GIVING PERMISSION")} //TODO popup for permission request
 
     }
 
