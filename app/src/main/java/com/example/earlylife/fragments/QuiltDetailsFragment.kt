@@ -27,4 +27,6 @@ class QuiltDetailsFragment : Fragment() {
         return view
     }
 
+    
+
 }

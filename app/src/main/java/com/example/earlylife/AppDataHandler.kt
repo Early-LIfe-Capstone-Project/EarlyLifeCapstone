@@ -1,11 +1,12 @@
 package com.example.earlylife
 
 import android.content.Context
+import com.example.earlylife.fragments.HomeFragment
 import java.io.*
 
 private const val FILE_NAME = "activityData.txt"
 
-class AppDataHandler constructor (private val context: Context){
+class AppDataHandler(private val context: MainActivity){
 
     fun saveActivityData (activityList: ActivityList){
         var line: String
