@@ -7,11 +7,12 @@ import com.example.earlylife.fragments.HomeFragment
 import com.example.earlylife.fragments.QuiltDetailsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+abstract class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val quiltDetailsFragment = QuiltDetailsFragment()
     private val appDataHandler = AppDataHandler(this)
+    abstract var activityList: ActivityList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        appDataHandler.loadActivityData()
+        activityList = appDataHandler.loadActivityData()
     }
 
     private fun replaceFragment (fragment: Fragment) {
