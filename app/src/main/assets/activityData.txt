@@ -1,3 +1,4 @@
-Identify Shapes,Details,ECD,tip1,tip2,tip3
-Complete Pattern,Details,ECD,tip1,tip2,tip3
-Positions,Details,ECD,tip1,tip2
+Learn Numbers,Details,ECD,tip1,tip2,tip3
+Learn Shapes,Details,ECD,tip1,tip2,tip3
+Love,Details,ECD,tip1,tip2
+Match Shapes,Details,ECD,tip1,tip2
