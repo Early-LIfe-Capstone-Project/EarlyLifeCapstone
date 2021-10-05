@@ -5,6 +5,22 @@
     <color name="light_cyan_blue">#eceff1</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="background_red">#ffe5e5</color>
+    <color name="graph_red">#fcb9b8</color>
+    <color name="accent_red">#ab0800</color>
+
+    <color name="background_orange">#fce9d4</color>
+    <color name="graph_orange">#fad1a9</color>
+    <color name="accent_orange">#f28500</color>
+
+    <color name="background_green">#e9f0d7</color>
+    <color name="graph_green">#d3e1af</color>
+    <color name="accent_green">#8fae2d</color>
+
+    <color name="background_blue">#d8e5f1</color>
+    <color name="graph_blue">#b2cae4</color>
+    <color name="accent_blue">#457ab1</color>
+
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
