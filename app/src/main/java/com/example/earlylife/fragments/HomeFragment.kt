@@ -56,12 +56,15 @@ class HomeFragment : Fragment() {
         }
 
         barList = ArrayList()
-        barList.add(BarEntry(1f, 500f))
-        barList.add(BarEntry(2f, 100f))
-        barList.add(BarEntry(3f, 300f))
-        barList.add(BarEntry(4f, 800f))
+        barList.add(BarEntry(1f, 500f))//blue
+        barList.add(BarEntry(2f, 100f))//green
+        barList.add(BarEntry(3f, 300f))//orange
+        barList.add(BarEntry(4f, 800f))//red
 
-        barDataSet = BarDataSet(barList, "name")
+        barDataSet = BarDataSet(barList, "")
+        //remove legend and description
+        barChart.description.isEnabled = false
+        barChart.legend.isEnabled = false
 
         //setting colors of individual bars
         barDataSet.setColors(
@@ -78,14 +81,16 @@ class HomeFragment : Fragment() {
         barChart.xAxis.isEnabled = false
         barChart.axisLeft.isEnabled = false
         barChart.axisRight.isEnabled = false
-        barChart.description.isEnabled = false
+
+        barChart.setScaleEnabled(false)
+        barChart.setPinchZoom(false)
+
+        barChart.axisLeft.axisMaximum = 3000f
+        barChart.axisLeft.axisMinimum = 0f
 
 
-            //barDataSet.valueTextColor = Color.BLACK
-            //barDataSet.valueTextSize = 15f
-
-            //refresh graph
-            barChart.invalidate()
+        //refresh graph
+        barChart.invalidate()
         }
 
     private fun getData () {
