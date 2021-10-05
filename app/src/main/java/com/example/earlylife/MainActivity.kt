@@ -1,18 +1,20 @@
 package com.example.earlylife
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.earlylife.fragments.HomeFragment
 import com.example.earlylife.fragments.QuiltDetailsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-abstract class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val quiltDetailsFragment = QuiltDetailsFragment()
-    private val appDataHandler = AppDataHandler(this)
-    abstract var activityList: ActivityList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,6 @@ abstract class MainActivity : AppCompatActivity() {
             }
             true
         }
-        activityList = appDataHandler.loadActivityData()
     }
 
     private fun replaceFragment (fragment: Fragment) {
@@ -38,4 +39,13 @@ abstract class MainActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
+
+    fun checkNetwork(context: Context) {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+        val isMetered = (context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager).isActiveNetworkMetered
+
+    }
+
 }

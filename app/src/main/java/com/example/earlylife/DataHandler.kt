@@ -9,14 +9,21 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
+
 class DataHandler {
     fun handle (){
+        val permission = true
+
+        checkPermission()
+
+        if (permission) {
         val compositeDisposable = CompositeDisposable()
         compositeDisposable.add(
             RetrofitService.ServiceBuilder.buildService().getShapes()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe { response -> onResponse(response) })}
+    }
 
         private fun onResponse(response: Quilt)
         {
@@ -26,6 +33,11 @@ class DataHandler {
             var txt_timeOnTask = response.LearnShapes.timeOnTask
             var txt_correct = response.LearnShapes.correct
             var txt_date = response.LearnShapes.date
+
+
+        }
+
+        fun checkPermission(){
 
 
         }
