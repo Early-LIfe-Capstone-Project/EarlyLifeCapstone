@@ -1,12 +1,13 @@
 package com.example.earlylife
 
+import com.example.earlylife.model.*
 import org.junit.Assert.*
 import org.junit.Test
 
-private const val NAME = "Colour Match"
-private const val DETAILS = "Match colours on the quilt"
+private const val NAME = "Match Shapes"
+private const val DETAILS = "Match shapes on the quilt"
 private const val ECD = "Cognition"
-private const val TIP_1 = "Point at colours"
+private const val TIP_1 = "Point at shapes"
 private const val TIP_2 = "Talk them through activity and demonstrate"
 private const val TIP_3 = "Verbalize"
 
@@ -15,6 +16,10 @@ class ActivityTest {
     private val tips = listOf(TIP_1, TIP_2, TIP_3)
     private val sampleActivity = Activity(NAME, DETAILS, ECD, tips)
     private val sampleUsageStatistics = UsageStatistics()
+    private val response = Quilt(LearnNumbers("", "","","",""),
+        LearnShapes("","","","",""),
+        Love("", "","","",""),
+        MarchShapes("","","","","1.2"))
 
     @Test
     fun activity_checkUndeclaredUsageStatistics() {
@@ -29,10 +34,10 @@ class ActivityTest {
     @Test
     fun activity_updatesStats() {
         val changedActivity = sampleActivity
-        val changedUsage = sampleUsageStatistics
         changedActivity.update(response)
-        changedUsage.update(activityName, response)
-        assertEquals(sampleUsageStatistics, sampleActivity.usage)
+        val changedUsage = sampleUsageStatistics
+        changedUsage.update(NAME, response)
+        assertEquals(changedUsage, changedActivity.usage)
     }
 
     @Test

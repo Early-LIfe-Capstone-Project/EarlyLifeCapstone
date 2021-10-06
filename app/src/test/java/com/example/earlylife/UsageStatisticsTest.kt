@@ -1,5 +1,6 @@
 package com.example.earlylife
 
+import com.example.earlylife.model.*
 import org.junit.Assert.*
 
 import org.junit.Test
@@ -7,6 +8,13 @@ import org.junit.Test
 class UsageStatisticsTest {
 
     private val sampleUsageStatistics = UsageStatistics()
+    private val activityName = "Match Shapes"
+    private val response = Quilt(
+        LearnNumbers("", "","","",""),
+        LearnShapes("","","","",""),
+        Love("", "","","",""),
+        MarchShapes("","","","","1.2")
+    )
 
     @Test
     fun usageStats_getsWeeklyUsage() {

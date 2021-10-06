@@ -1,20 +1,28 @@
 package com.example.earlylife
 
+import com.example.earlylife.model.*
 import org.junit.Assert.*
 import org.junit.Test
 
-private const val NAME = "Colour Match"
+private const val NAME = "Love"
 private const val DETAILS = "Match colours on the quilt"
 private const val ECD = "Cognition"
 private const val TIP_1 = "Point at colours"
 private const val TIP_2 = "Talk them through activity and demonstrate"
 private const val TIP_3 = "Verbalize"
 
-private const val NAME_2 = "Shape Recognition"
+private const val NAME_2 = "Match Shapes"
 private const val DETAILS_2 = "Identify the shapes in the quilt as instructed"
 private const val ECD_2 = "Listening and visualisation"
 private const val TIP_1_2 = "Tell them the shapes before they start"
 private const val TIP_2_2 = "Have them talk through all the shapes before starting"
+
+private val response = Quilt(
+    LearnNumbers("", "","","",""),
+    LearnShapes("","","","",""),
+    Love("", "","","","3.4"),
+    MarchShapes("","","","","1.2")
+)
 
 class ActivityListTest {
 
