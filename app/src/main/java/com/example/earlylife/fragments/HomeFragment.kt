@@ -177,8 +177,12 @@ class HomeFragment : Fragment() {
                 RetrofitService.ServiceBuilder.buildService().getShapes()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
-                    .subscribe({ response -> emptyResponse(response) }, { t -> onFailure(t) })
+                    .subscribe({ response -> emptyResponse(response) }, { t -> emptyFailure(t) })
             )
+    }
+
+    private fun emptyFailure(t: Throwable?) {
+        connected = false
     }
 
     private fun emptyResponse(response: Quilt?) {
