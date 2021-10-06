@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Early Life</string>
     <string name="home">Home</string>
-    <string name="user_manuals">To use this app, ensure that you have a quilt designed by Sarina Till.\n
-        To update your app with the latest data from the quilt, press the green sync data button on the home screen and follow the prompts.\n
+    <string name="user_manuals">To use this app, ensure that you have a quilt designed by Sarina Till.\n\n
+        To update your app with the latest data from the quilt, press the green sync data button on the home screen and follow the prompts.\n\n
         On the home screen, you will be presented with a Usage Report, which will display how much time has been spent on each quilt activity.\n
-        You can click on each quilt activity to get more details about each activity.\n
+        You can click on each quilt activity to get more details about each activity.\n\n
         On the activity details pages, you will find ECD resources to help you understand the purpose behind each activity
         and some tips to help you encourage your child to engage more with the activity.\n
-        You will also be able to see how much time has been spent on the activity.\n
+        You will also be able to see how much time has been spent on the activity.\n\n
         On the quilt details page, you can find this user manual and a list of the quilt activities
-        which you can browse through. Clicking on one of the quilt activities will take you to the activity details page for that activity. </string>
+        which you can browse through. Clicking on one of the quilt activities will take you to the activity details page for that activity.\n\n\n\n\n </string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
