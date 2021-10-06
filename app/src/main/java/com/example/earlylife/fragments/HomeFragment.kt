@@ -23,6 +23,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import android.content.DialogInterface
+import android.graphics.Color
 import com.example.earlylife.WeeklyReport
 
 
@@ -54,19 +55,26 @@ class HomeFragment : Fragment() {
             getData()
         }
 
-        val wr = WeeklyReport()
+        //val wr = WeeklyReport()
 
-        val report = wr.generateReport(activityList)
+        //val report = wr.generateReport(activityList)
+
+       // barList = ArrayList()
+       // var i =0f
+
+        //for ((s, int)in report){
+       //     i++
+         //   barList.add(BarEntry(i,int ))
+
+
+       // }
 
         barList = ArrayList()
-        var i =0f
+        barList.add(BarEntry(1f, 500f))
+        barList.add(BarEntry(2f, 100f))
+        barList.add(BarEntry(3f, 300f))
+        barList.add(BarEntry(4f, 800f))
 
-        for ((s, int)in report){
-            i++
-            barList.add(BarEntry(i,int ))
-
-
-        }
 
         barDataSet = BarDataSet(barList, "")
         //remove legend and description
@@ -81,7 +89,13 @@ class HomeFragment : Fragment() {
             ContextCompat.getColor(barChart.context, R.color.graph_red),
         )
 
+        //set bar shadows
+        barChart.setDrawBarShadow(true)
+        barDataSet.barShadowColor = Color.argb(40, 150, 150, 150)
+        
+
         barData = BarData(barDataSet)
+        barData.barWidth = 0.9f //set bar width
         barChart.data = barData
 
         //remove gridlines
@@ -89,12 +103,16 @@ class HomeFragment : Fragment() {
         barChart.axisLeft.isEnabled = false
         barChart.axisRight.isEnabled = false
 
+        //setting background color of chart to white
+        barChart.setBackgroundColor(Color.WHITE)
+
+        //removing pinch zoom feature
         barChart.setScaleEnabled(false)
         barChart.setPinchZoom(false)
 
+        //axis limit of 3000 minutes of game usage
         barChart.axisLeft.axisMaximum = 3000f
         barChart.axisLeft.axisMinimum = 0f
-
 
         //refresh graph
         barChart.invalidate()
