@@ -118,7 +118,7 @@ class HomeFragment : Fragment() {
         //bar labels
         barChart.xAxis.setDrawGridLines(false)
         barChart.xAxis.setPosition(XAxis.XAxisPosition.BOTTOM)
-        barChart.xAxis.isEnabled = true
+        barChart.xAxis.isEnabled = false
         barChart.xAxis.setDrawAxisLine(false)
 
         //setting background color of chart to white
