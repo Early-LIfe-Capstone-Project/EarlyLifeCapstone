@@ -24,6 +24,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import android.content.DialogInterface
 import android.graphics.Color
+import android.os.Handler
+import android.widget.Toast
 import com.example.earlylife.WeeklyReport
 
 
@@ -34,8 +36,9 @@ class HomeFragment : Fragment() {
     lateinit var barData: BarData
     lateinit var barChart: HorizontalBarChart
     lateinit var syncButton: Button
-    lateinit var activityList : ActivityList
-    var downloadPermission : Boolean = false
+    lateinit var activityList: ActivityList
+    var downloadPermission: Boolean = false
+    var connected: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +55,7 @@ class HomeFragment : Fragment() {
 
         syncButton = view.findViewById<Button>(R.id.sync_quilt_button)
 
-        syncButton.setOnClickListener(){
+        syncButton.setOnClickListener() {
             getData()
         }
 
@@ -78,7 +81,7 @@ class HomeFragment : Fragment() {
         //set bar shadows
         barChart.setDrawBarShadow(true)
         barDataSet.barShadowColor = Color.argb(40, 150, 150, 150)
-        
+
 
         barData = BarData(barDataSet)
         barData.barWidth = 0.9f //set bar width
@@ -102,29 +105,54 @@ class HomeFragment : Fragment() {
 
         //refresh graph
         barChart.invalidate()
+
+        val delay = 10000L
+        RepeatHelper.repeatDelayed(delay) {
+            isConnected()
         }
 
-    private fun getData () {
-        downloadPermission = getPermission()
-
-        if (downloadPermission) {
-            val connected = true
-            if (connected) {
-                val compositeDisposable = CompositeDisposable()
-                compositeDisposable.add(
-                    RetrofitService.ServiceBuilder.buildService().getShapes()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe({ response -> onResponse(response) }, { t -> onFailure(t) })
-                )
-            }
-        }
 
     }
 
+    private fun getData() {
+        val dialogClickListener =
+            DialogInterface.OnClickListener { _, which ->
+                when (which) {
+                    DialogInterface.BUTTON_POSITIVE -> {
+                        val compositeDisposable = CompositeDisposable()
+                        compositeDisposable.add(
+                            RetrofitService.ServiceBuilder.buildService().getShapes()
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribeOn(Schedulers.io())
+                                .subscribe(
+                                    { response -> onResponse(response) },
+                                    { t -> onFailure(t) })
+                        )
+                    }
+                    DialogInterface.BUTTON_NEGATIVE -> {
+
+                    }
+                }
+            }
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this.context)
+        builder.setMessage("THIS WILL USE YOUR MOBILE DATA! \n YOU MUST BE CONNECTED TO THE QUILT BEFORE PRESSING YES!\n DO YOU GIVE PERMISSION TO SYNC THE QUILT DATA?")
+            .setPositiveButton("Yes", dialogClickListener)
+            .setNegativeButton("No", dialogClickListener).show()
+    }
+
+
     private fun onFailure(t: Throwable) {
-        //Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
         Log.d(ContentValues.TAG, "onFailure: " + t.message)
+
+        val builder = AlertDialog.Builder(this.context)
+        builder.setMessage("You are not connected to the Quilt!")
+            .setCancelable(true)
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.cancel()
+            }
+        val alert = builder.create()
+        alert.show()
 
     }
 
@@ -143,33 +171,31 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun getPermission() : Boolean{
-            val dialogClickListener =
-                DialogInterface.OnClickListener { _, which ->
-                    when (which) {
-                        DialogInterface.BUTTON_POSITIVE -> {
-                            downloadPermission = true
-                        }
-                        DialogInterface.BUTTON_NEGATIVE -> {
-                            downloadPermission = false
-                        }
-                    }
+    private fun isConnected(){
+            val compositeDisposable = CompositeDisposable()
+            compositeDisposable.add(
+                RetrofitService.ServiceBuilder.buildService().getShapes()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({ response -> emptyResponse(response) }, { t -> onFailure(t) })
+            )
+    }
+
+    private fun emptyResponse(response: Quilt?) {
+        connected = true
+    }
+
+    object RepeatHelper {
+        fun repeatDelayed(delay: Long, todo: () -> Unit) {
+            val handler = Handler()
+            handler.postDelayed(object : Runnable {
+                override fun run() {
+                    todo()
+                    handler.postDelayed(this, delay)
                 }
-
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this.context)
-            builder.setMessage("THIS WILL USE YOUR MOBILE DATA! \n YOU MUST BE CONNECTED TO THE QUILT BEFORE PRESSING YES!\n DO YOU GIVE PERMISSION TO SYNC THE QUILT DATA?").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show()
-
-        return downloadPermission
+            }, delay)
+        }
     }
-
-    private fun isConnected() : Boolean{
-        return true
-    }
-
-
-
-
 
 
 
