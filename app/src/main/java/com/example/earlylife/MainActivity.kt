@@ -7,7 +7,12 @@ import com.example.earlylife.fragments.HomeFragment
 import com.example.earlylife.fragments.QuiltDetailsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
+/**
+ * This class represents the Main Activity of the application and contains the Bottom Navigation View
+ * It switches between the Home Fragment and Quilt Details Fragment
+ * depending on the icon clicked by the user.
+ *
+ */
 class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
@@ -18,6 +23,13 @@ class MainActivity : AppCompatActivity() {
     var downloadPermission = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        /**
+         * On Create creates the Bottom Navigation View and sets the View to the Home Fragment.
+         * It also contains the logic to swap between the Home Fragment and the Quilt Details fragment.
+         *
+         */
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -42,6 +54,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment (fragment: Fragment) {
+        /**
+         * Replace Fragment replaces the fragment container with the given fragment.
+         * @param fragment
+         */
+
         if (fragment != null) {
             val transaction= supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container, fragment)

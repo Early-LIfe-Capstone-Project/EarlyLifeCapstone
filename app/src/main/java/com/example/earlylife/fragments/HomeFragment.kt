@@ -30,6 +30,9 @@ import android.widget.TextView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 
 
@@ -149,10 +152,31 @@ class HomeFragment : Fragment() {
             }
         }
 
+        barChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener
+        {
+            override fun onValueSelected(e: Entry?, h: Highlight?) {
 
+                /**
+                 * Creates a Popup Dialog providing details of the data visualised by a bar in the Usage Report Horizontal Bar Graph.
+                 * The dialogue appears when a user clicks on a bar in the bar graph.
+                 *
+                 */
 
+                val barEntry = e as BarEntry
+                var x = barChart.barData.getDataSetForEntry(e).getEntryIndex(e)
 
+                val activity = activityList.activityList[x].activityName
+                val time = activityList.activityList[x].usage.weeklyUsage
+                val alertDialogBuilder = AlertDialog.Builder(getActivity())
+                alertDialogBuilder.setTitle(activity)
+                alertDialogBuilder.setMessage("Total hours spent: $time hours")
+                alertDialogBuilder.show()
 
+            }
+            override fun onNothingSelected() {
+            }
+        }
+        )
 
     }
 
