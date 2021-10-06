@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/activity_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="activity_name"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:padding="8dp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/total_hours_spent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="total_hours_spent"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="8dp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="time"
+        android:textSize="18sp"
+        android:padding="8dp"
+        android:layout_marginTop="50dp"/>
+
+
+
+
+</LinearLayout>

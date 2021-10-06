@@ -10,8 +10,8 @@
 
     <com.github.mikephil.charting.charts.HorizontalBarChart
         android:id="@+id/usage_report_chart"
-        android:layout_width="277dp"
-        android:layout_height="325dp"
+        android:layout_width="317dp"
+        android:layout_height="348dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/sync_quilt_button"
         app:layout_constraintEnd_toEndOf="parent"

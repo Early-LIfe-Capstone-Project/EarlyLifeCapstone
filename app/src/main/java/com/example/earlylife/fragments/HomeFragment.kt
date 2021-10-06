@@ -25,6 +25,8 @@ import io.reactivex.schedulers.Schedulers
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Handler
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 /**
  * This class represents the Home Page Fragment of the application and is where the weekly usage graph resides
@@ -96,9 +98,24 @@ class HomeFragment : Fragment() {
         barChart.data = barData
 
         //remove gridlines
-        barChart.xAxis.isEnabled = false
+        //barChart.xAxis.isEnabled = false
         barChart.axisLeft.isEnabled = false
         barChart.axisRight.isEnabled = false
+
+        //bar labels
+        barChart.xAxis.setDrawGridLines(false)
+        barChart.xAxis.setPosition(XAxis.XAxisPosition.BOTTOM)
+        barChart.xAxis.isEnabled = true
+        barChart.xAxis.setDrawAxisLine(false)
+
+        barChart.xAxis.setLabelCount(4)
+        val axisLabels = arrayOf(
+            activityList.activityList[0].activityName,
+            activityList.activityList[1].activityName,
+            activityList.activityList[2].activityName,
+            activityList.activityList[3].activityName )
+        barChart.xAxis.valueFormatter = IndexAxisValueFormatter(axisLabels)
+
 
         //setting background color of chart to white
         barChart.setBackgroundColor(Color.WHITE)
@@ -112,7 +129,7 @@ class HomeFragment : Fragment() {
         barChart.axisLeft.axisMinimum = 0f
 
         //refresh graph
-        barChart.invalidate()
+        barChart.animateY(1800)
 
         val delay = 10000L
         RepeatHelper.repeatDelayed(delay) {
@@ -189,7 +206,8 @@ class HomeFragment : Fragment() {
 
         appDataHandler.saveActivityData(activityList)
 
-        barChart.invalidate()
+        //barChart.invalidate()
+        barChart.animateY(1800)
 
         barList.clear()
 
