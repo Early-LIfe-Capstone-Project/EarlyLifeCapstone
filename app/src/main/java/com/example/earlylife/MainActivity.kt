@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val quiltDetailsFragment = QuiltDetailsFragment()
-    val appDataHandler = AppDataHandler(this)
+    private val appDataHandler = AppDataHandler(this)
     lateinit var activityList: ActivityList
 
     var downloadPermission = true
