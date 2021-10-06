@@ -21,4 +21,7 @@
     <string name="activity_information">Activity Information</string>
     <string name="quilt_details">Quilt Details</string>
     <string name="usage_report">Usage Report</string>
+    <string name="activity_name">Activity Name</string>
+    <string name="ecd_resource">Developmental Objective</string>
+    <string name="tips">Tips and Tricks</string>
 </resources>
