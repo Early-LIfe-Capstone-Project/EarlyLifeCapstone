@@ -1,3 +1,9 @@
+/**
+ * Skeleton class created in the case that mobile data would be used in the app so that
+ * the user could be warned of how much data would be used.
+ * This class was not used since the app does not use mobile data.
+ */
+
 package com.example.earlylife
 
 import java.nio.file.Path
@@ -11,7 +17,7 @@ class MobileDataUsage {
         }
 
         return sum
-        TODO("Figure out what files will be uploaded and from where and all that jazz")
+        TODO("Figure out what files will be uploaded and from where")
     }
 
     fun showWarning() {

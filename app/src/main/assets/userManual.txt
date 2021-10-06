@@ -1,0 +1,5 @@
+To use this app, ensure that you have a quilt designed by Sarina Till. 
+To update your app with the latest data from the quilt, press the green sync data button on the home screen and follow the prompts.
+On the home screen, you will be presented with a Usage Report, which will display how much time has been spent on each quilt activity. You can click on each quilt activity to get more details about each activity.
+On the activity details pages, you will find ECD resources to help you understand the purpose behind each activity and some tips to help you encourage your child to engage more with the activity. You will also be able to see how much time has been spent on the activity.
+On the quilt details page, you can find this user manual and a list of the quilt activities which you can browse through. clicking on one of the quilt activities will take you to the activity details page for that activity.
