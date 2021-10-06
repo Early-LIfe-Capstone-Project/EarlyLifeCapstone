@@ -10,7 +10,7 @@ package com.example.earlylife
 
 import com.example.earlylife.model.Quilt
 
-class UsageStatistics(var weeklyUsage: Float = 0F, var lastWeeklyUsage: Float = 0F):
+class UsageStatistics(var weeklyUsage: Float = 50F, var lastWeeklyUsage: Float = 50F):
     Comparable<UsageStatistics>
 {
     override fun compareTo(other: UsageStatistics): Int {
@@ -74,7 +74,7 @@ class UsageStatistics(var weeklyUsage: Float = 0F, var lastWeeklyUsage: Float = 
         }
 
         else if (activityName == "Match Shapes"){
-            val weeklyUsage = response.MarchShapes.timeOnTask
+            weeklyUsage = response.MarchShapes.timeOnTask.toFloat()
         }
 
     }

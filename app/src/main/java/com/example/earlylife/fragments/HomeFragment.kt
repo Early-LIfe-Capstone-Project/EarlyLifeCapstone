@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
     lateinit var barList: ArrayList<BarEntry>
     lateinit var barDataSet: BarDataSet
     lateinit var barData: BarData
+    lateinit var barChart: HorizontalBarChart
     lateinit var syncButton: Button
     lateinit var activityList : ActivityList
     var downloadPermission : Boolean = false
@@ -47,7 +48,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val barChart = view.findViewById<HorizontalBarChart>(R.id.usage_report_chart)
+        barChart = view.findViewById<HorizontalBarChart>(R.id.usage_report_chart)
 
         syncButton = view.findViewById<Button>(R.id.sync_quilt_button)
 
@@ -55,26 +56,11 @@ class HomeFragment : Fragment() {
             getData()
         }
 
-        //val wr = WeeklyReport()
-
-        //val report = wr.generateReport(activityList)
-
-       // barList = ArrayList()
-       // var i =0f
-
-        //for ((s, int)in report){
-       //     i++
-         //   barList.add(BarEntry(i,int ))
-
-
-       // }
-
         barList = ArrayList()
-        barList.add(BarEntry(1f, 500f))
-        barList.add(BarEntry(2f, 100f))
-        barList.add(BarEntry(3f, 300f))
-        barList.add(BarEntry(4f, 800f))
-
+        barList.add(BarEntry(1f, activityList.activityList[0].usage.weeklyUsage))
+        barList.add(BarEntry(2f, activityList.activityList[1].usage.weeklyUsage))
+        barList.add(BarEntry(3f, activityList.activityList[2].usage.weeklyUsage))
+        barList.add(BarEntry(4f, activityList.activityList[3].usage.weeklyUsage))
 
         barDataSet = BarDataSet(barList, "")
         //remove legend and description
@@ -111,7 +97,7 @@ class HomeFragment : Fragment() {
         barChart.setPinchZoom(false)
 
         //axis limit of 3000 minutes of game usage
-        barChart.axisLeft.axisMaximum = 3000f
+        barChart.axisLeft.axisMaximum = 24f
         barChart.axisLeft.axisMinimum = 0f
 
         //refresh graph
@@ -120,7 +106,6 @@ class HomeFragment : Fragment() {
 
     private fun getData () {
         downloadPermission = getPermission()
-
 
         if (downloadPermission) {
             val connected = true
@@ -146,11 +131,19 @@ class HomeFragment : Fragment() {
     private fun onResponse(response: Quilt) {
 
         activityList.update(response)
+        barChart.invalidate()
+
+        barList.clear()
+
+        barList.add(BarEntry(1f, activityList.activityList[0].usage.weeklyUsage))
+        barList.add(BarEntry(2f, activityList.activityList[1].usage.weeklyUsage))
+        barList.add(BarEntry(3f, activityList.activityList[2].usage.weeklyUsage))
+        barList.add(BarEntry(4f, activityList.activityList[3].usage.weeklyUsage))
+
 
     }
 
     private fun getPermission() : Boolean{
-        if (!downloadPermission){
             val dialogClickListener =
                 DialogInterface.OnClickListener { _, which ->
                     when (which) {
@@ -166,7 +159,6 @@ class HomeFragment : Fragment() {
             val builder: AlertDialog.Builder = AlertDialog.Builder(this.context)
             builder.setMessage("THIS WILL USE YOUR MOBILE DATA! \n YOU MUST BE CONNECTED TO THE QUILT BEFORE PRESSING YES!\n DO YOU GIVE PERMISSION TO SYNC THE QUILT DATA?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show()
-        }
 
         return downloadPermission
     }

@@ -140,7 +140,7 @@ void sendHttpResponse(WiFiEspClient client)
     "\r\n");
   
  
-  delay(10000);
-  client.print("{\n \"LearnShapes\":\n  {\"activityID\": \"001\",\n    \"acticityName\": \"shapes\",\n    \"date\":\"12/12/2021\",\n    \"correct\": \"8\",\n     \"timeOnTask\":\"5\"\n },\n \"LearnNumbers\":\n  {\"activityID\": \"002\",\n    \"acticityName\": \"numbers\",\n    \"date\":\"12/12/2021\",\n    \"correct\": \"5\",\n     \"timeOnTask\":\"1.5\"\n },\n \"MarchShapes\":\n  {\"activityID\": \"003\",\n    \"acticityName\": \"match\",\n    \"date\":\"12/12/2021\",\n    \"correct\": \"6\",\n     \"timeOnTask\":\"3\"\n },\n \"Love\":\n  {\"activityID\": \"004\",\n    \"acticityName\": \"loves\",\n    \"date\":\"12/12/2021\",\n    \"correct\": \"8\",\n     \"timeOnTask\":\"5\"\n }\n\n}\n\n");
+  //delay(10000);
+  client.print("{\n \"LearnShapes\":\n  {\"activityID\": \"001\",\n    \"activityName\": \"shapes\",\n    \"date\":\"12/12/2021\",\n    \"correct\": \"8\",\n     \"timeOnTask\":\"5\"\n },\n \"LearnNumbers\":\n  {\"activityID\": \"002\",\n    \"activityName\": \"numbers\",\n    \"date\":\"12/12/2021\",\n    \"correct\": \"5\",\n     \"timeOnTask\":\"1.5\"\n },\n \"MarchShapes\":\n  {\"activityID\": \"003\",\n    \"activityName\": \"match\",\n    \"date\":\"12/12/2021\",\n    \"correct\": \"6\",\n     \"timeOnTask\":\"3\"\n },\n \"Love\":\n  {\"activityID\": \"004\",\n    \"activityName\": \"loves\",\n    \"date\":\"12/12/2021\",\n    \"correct\": \"8\",\n     \"timeOnTask\":\"5\"\n }\n\n}\n\n");
 
 }
