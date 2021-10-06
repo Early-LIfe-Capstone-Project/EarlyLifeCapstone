@@ -2,7 +2,7 @@
 
 This is our Capstone Project Code
 
-Our Repository and Git Log is stored at https://github.com/Early-LIfe-Capstone-Project/EarlyLifeCapstone
+Our Repository and Git Log is stored at https://github.com/Early-LIfe-Capstone-Project/EarlyLifeCapstone and https://gitlab.cs.uct.ac.za/mhmzah023/EarlyLifeCapstone
 
 this is our git log:
 
