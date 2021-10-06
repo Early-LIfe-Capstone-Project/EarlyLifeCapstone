@@ -52,4 +52,14 @@ class Activity constructor(
                 (usage == other.usage)
     }
 
+    fun activityAsArray(): Array<String> {
+        return arrayOf(activityName, activityDetails, ecdDetails, generateTip())
+        /**
+         * Used to generate an array of the activity parameters as String used to create the activity details
+         * page.
+         *
+         * @returns An array of strings containing the activity parameters including a random tip
+         */
+    }
+
 }

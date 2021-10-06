@@ -14,7 +14,7 @@
     android:background="?colorPrimaryVariant"
     tools:context=".fragments.QuiltDetailsFragment">
     <TextView
-        android:id="@+id/activity_info_header"
+        android:id="@+id/activity_name"
         android:layout_width="319dp"
         android:layout_height="44dp"
         android:layout_marginTop="20dp"
@@ -55,10 +55,10 @@
         android:layout_width="319dp"
         android:layout_height="200dp"
         android:layout_marginTop="1dp"
-        app:layout_constraintEnd_toEndOf="@+id/activity_info_header"
+        app:layout_constraintEnd_toEndOf="@+id/activity_name"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/activity_info_header"
-        app:layout_constraintTop_toBottomOf="@+id/activity_info_header" />
+        app:layout_constraintStart_toStartOf="@+id/activity_name"
+        app:layout_constraintTop_toBottomOf="@+id/activity_name" />
 
     <TextView
         android:id="@+id/general_info_header"
@@ -68,9 +68,9 @@
         android:text="@string/general_information"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/activity_info_header"
+        app:layout_constraintEnd_toEndOf="@+id/activity_name"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/activity_info_header"
+        app:layout_constraintStart_toStartOf="@+id/activity_name"
         app:layout_constraintTop_toBottomOf="@+id/activity_info_list"
         tools:ignore="UnknownId" />
 
