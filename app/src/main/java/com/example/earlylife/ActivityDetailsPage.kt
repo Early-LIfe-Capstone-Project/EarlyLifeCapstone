@@ -1,3 +1,9 @@
+/**
+ * This class represents the ActivityDetailsPage which shows the user more details about the
+ * selected activity on the Quilt Details Fragment. It is customized depending on which activity was
+ * selected.
+ */
+
 package com.example.earlylife
 
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +14,10 @@ const val EXTRA_MESSAGE = "com.example.earlylife.ACTIVITY"
 
 class ActivityDetailsPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        /**
+         * Specifies the activity details on the activity based on the activity that was selected
+         * which is passed through when the activity is created via an intent object.
+         */
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_page)
 

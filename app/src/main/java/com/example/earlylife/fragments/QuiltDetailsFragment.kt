@@ -1,3 +1,11 @@
+/**
+ * This class represents the Quilt Details Fragment which is accessed by selecting the corresponding tab
+ * in the Bottom Navigation tab. It displays the quilt activities, which can be clicked on to access
+ * more details about an activity displayed on the ActivityDetailsPage, and a short user manual for
+ * the app.
+ *
+ */
+
 package com.example.earlylife.fragments
 
 import android.content.Intent
@@ -17,6 +25,10 @@ const val EXTRA_MESSAGE = "com.example.earlylife.ACTIVITY"
 class QuiltDetailsFragment : Fragment() {
 
     override fun onCreateView(
+        /**
+         * Creates the fragment view and also allows the user to switch to the activity details page
+         * when an activity is selected.
+         */
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
