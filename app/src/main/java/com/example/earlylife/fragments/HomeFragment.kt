@@ -28,7 +28,11 @@ import android.os.Handler
 import android.widget.Toast
 import com.example.earlylife.WeeklyReport
 
-
+/**
+ * This class represents the Home Page Fragment of the application and is where the weekly usage graph resides
+ * as well as the logic for the connection to the arduino.
+ *
+ */
 class HomeFragment : Fragment() {
 
     lateinit var barList: ArrayList<BarEntry>
@@ -37,7 +41,6 @@ class HomeFragment : Fragment() {
     lateinit var barChart: HorizontalBarChart
     lateinit var syncButton: Button
     lateinit var activityList: ActivityList
-    var downloadPermission: Boolean = false
     var connected: Boolean = false
 
     override fun onCreateView(
@@ -50,6 +53,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        /**
+         * On View Created the Bar Chart and Sync Button are created, The bar is populated with the data from the activityList stored locally on the
+         * device
+         * The method which checks the connection with the arduino every x seconds is triggered here as well
+         */
 
         barChart = view.findViewById<HorizontalBarChart>(R.id.usage_report_chart)
 
@@ -115,6 +124,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun getData() {
+        /**
+         * Creates a Popup Dialog. The Dialog warns the user that they will be using their mobile data
+         * and storage to sync with the quilt and asks for permission
+         * Once permission is granted - the Retrofit service is built and the arduino starts sending API calls to the device
+         *
+         */
         val dialogClickListener =
             DialogInterface.OnClickListener { _, which ->
                 when (which) {
@@ -143,6 +158,13 @@ class HomeFragment : Fragment() {
 
 
     private fun onFailure(t: Throwable) {
+        /**
+         * When the API call fails for whatever reason this method is called
+         * It logs the failure and the failure message
+         * It shows a alert to the user
+         * @param t throwable exception - thrown when failure occurs in API connection
+         */
+
         Log.d(ContentValues.TAG, "onFailure: " + t.message)
 
         val builder = AlertDialog.Builder(this.context)
@@ -157,6 +179,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun onResponse(response: Quilt) {
+        /**
+         * If the API call was successful this method updates the activityList with the new data from the Arduino
+         * and updates the graph
+         *
+         * @param response : API message from the Arduino
+         */
 
         activityList.update(response)
         barChart.invalidate()
@@ -172,6 +200,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun isConnected(){
+        /**
+         * Checks if the device is connected to the Arduino by checking if you can do a successful API call without storing or recieving the data
+         *
+         */
             val compositeDisposable = CompositeDisposable()
             compositeDisposable.add(
                 RetrofitService.ServiceBuilder.buildService().getShapes()
@@ -182,14 +214,23 @@ class HomeFragment : Fragment() {
     }
 
     private fun emptyFailure(t: Throwable?) {
+        /**
+         * Cannot connect to the Arduino so change the connected global variable to false
+         */
         connected = false
     }
 
     private fun emptyResponse(response: Quilt?) {
+        /**
+         * Can connect to the Arduino so change the connected global variable to true
+         */
         connected = true
     }
 
     object RepeatHelper {
+        /**
+         * Helper object to allow the scheduling of the connection checking method
+         */
         fun repeatDelayed(delay: Long, todo: () -> Unit) {
             val handler = Handler()
             handler.postDelayed(object : Runnable {
