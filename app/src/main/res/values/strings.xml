@@ -12,4 +12,5 @@
     <string name="general_information">General Information</string>
     <string name="activity_information">Activity Information</string>
     <string name="quilt_details">Quilt Details</string>
+    <string name="usage_report">Usage Report</string>
 </resources>

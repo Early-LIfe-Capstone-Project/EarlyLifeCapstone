@@ -3,35 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?colorPrimaryVariant"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
+
     <com.github.mikephil.charting.charts.HorizontalBarChart
         android:id="@+id/usage_report_chart"
-        android:layout_width="301dp"
-        android:layout_height="364dp"
+        android:layout_width="277dp"
+        android:layout_height="325dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/sync_quilt_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643"
-        />
-
+        app:layout_constraintVertical_bias="0.722" />
 
     <Button
         android:id="@+id/sync_quilt_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginRight="145dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginStart="144.5dp"
+        android:layout_marginLeft="144.5dp"
+        android:layout_marginEnd="144.5dp"
+        android:layout_marginRight="144.5dp"
+        android:layout_marginBottom="88dp"
         android:backgroundTint="?attr/colorSecondary"
         android:text="@string/sync_quilt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/usage_report_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usage_report"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/usage_report_chart"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

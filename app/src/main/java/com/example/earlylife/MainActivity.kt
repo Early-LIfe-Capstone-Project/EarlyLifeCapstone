@@ -1,12 +1,14 @@
 package com.example.earlylife
 
-import android.content.ContentValues.TAG
+import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.Context
+import android.content.DialogInterface
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.earlylife.fragments.HomeFragment
@@ -23,13 +25,20 @@ class MainActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val quiltDetailsFragment = QuiltDetailsFragment()
-    private val appDataHandler = AppDataHandler(this)
+    val appDataHandler = AppDataHandler(this)
     lateinit var activityList: ActivityList
+
+    var downloadPermission = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         replaceFragment(homeFragment)
+
+        activityList = appDataHandler.loadActivityData()
+
+        homeFragment.activityList = activityList
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
@@ -42,8 +51,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         activityList = appDataHandler.loadActivityData()
-        getData()
-
     }
 
     private fun replaceFragment (fragment: Fragment) {
@@ -54,39 +61,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun checkNetwork(context: Context) {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
-        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
-        val isMetered = (context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager).isActiveNetworkMetered
-
-    }
-
-    fun getData () {
-    val permission = true
-        if (permission) {
-            val compositeDisposable = CompositeDisposable()
-            compositeDisposable.add(
-                RetrofitService.ServiceBuilder.buildService().getShapes()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
-                    .subscribe({ response -> onResponse(response) }, { t -> onFailure(t) })
-            )
-        }
-
-    }
-
-    private fun onFailure(t: Throwable) {
-        Toast.makeText(this,t.message, Toast.LENGTH_SHORT).show()
-        Log.d(TAG, "onFailure: " + t.message)
-
-    }
-
-    private fun onResponse(response: Quilt) {
-
-        activityList.update(response)
-
-    }
 
 
 
