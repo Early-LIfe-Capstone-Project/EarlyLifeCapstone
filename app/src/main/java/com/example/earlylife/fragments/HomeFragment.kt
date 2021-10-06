@@ -25,8 +25,6 @@ import io.reactivex.schedulers.Schedulers
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Handler
-import android.widget.Toast
-import com.example.earlylife.WeeklyReport
 
 /**
  * This class represents the Home Page Fragment of the application and is where the weekly usage graph resides
@@ -42,6 +40,7 @@ class HomeFragment : Fragment() {
     lateinit var syncButton: Button
     lateinit var activityList: ActivityList
     var connected: Boolean = false
+    lateinit var appDataHandler : AppDataHandler
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -187,6 +186,9 @@ class HomeFragment : Fragment() {
          */
 
         activityList.update(response)
+
+        appDataHandler.saveActivityData(activityList)
+
         barChart.invalidate()
 
         barList.clear()
