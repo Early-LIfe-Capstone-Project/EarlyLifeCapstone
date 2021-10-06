@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?colorPrimaryVariant"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
 
@@ -12,28 +12,24 @@
         android:id="@+id/usage_report_chart"
         android:layout_width="317dp"
         android:layout_height="348dp"
+        android:layout_marginTop="8dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/sync_quilt_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.722" />
+        app:layout_constraintEnd_toEndOf="@+id/usage_report_title"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/usage_report_title"
+        app:layout_constraintTop_toBottomOf="@+id/usage_report_title" />
 
     <Button
         android:id="@+id/sync_quilt_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144.5dp"
-        android:layout_marginLeft="144.5dp"
-        android:layout_marginEnd="144.5dp"
-        android:layout_marginRight="144.5dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="96dp"
         android:backgroundTint="?attr/colorSecondary"
         android:text="@string/sync_quilt"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/usage_report_chart"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/usage_report_chart" />
 
     <TextView
         android:id="@+id/usage_report_title"
@@ -41,24 +37,29 @@
         android:layout_height="wrap_content"
         android:text="@string/usage_report"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/usage_report_chart"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 
-    <EditText
+    <TextView
         android:id="@+id/connectedText"
-        android:layout_width="282dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="279dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="48dp"
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/usage_report_chart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usage_report_title" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sync_quilt_button"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/sync_quilt_button"
+        app:layout_constraintTop_toBottomOf="@+id/sync_quilt_button"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
