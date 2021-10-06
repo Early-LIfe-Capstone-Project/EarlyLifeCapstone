@@ -42,7 +42,7 @@ class AppDataHandler(private val context: MainActivity){
             for (tip in activity.tips){
                 line = "$line,$tip"
             }
-            fileContents = "$fileContents$line/n"
+            fileContents = "$fileContents$line\n"
         }
 
         val fileOutputStream: FileOutputStream
