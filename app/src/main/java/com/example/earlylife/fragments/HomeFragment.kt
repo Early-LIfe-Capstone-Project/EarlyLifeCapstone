@@ -23,10 +23,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import android.content.DialogInterface
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Handler
+import android.widget.TextView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.utils.ColorTemplate
+
+
+
+
+
+
 
 /**
  * This class represents the Home Page Fragment of the application and is where the weekly usage graph resides
@@ -108,15 +118,6 @@ class HomeFragment : Fragment() {
         barChart.xAxis.isEnabled = true
         barChart.xAxis.setDrawAxisLine(false)
 
-        barChart.xAxis.setLabelCount(4)
-        val axisLabels = arrayOf(
-            activityList.activityList[0].activityName,
-            activityList.activityList[1].activityName,
-            activityList.activityList[2].activityName,
-            activityList.activityList[3].activityName )
-        barChart.xAxis.valueFormatter = IndexAxisValueFormatter(axisLabels)
-
-
         //setting background color of chart to white
         barChart.setBackgroundColor(Color.WHITE)
 
@@ -131,10 +132,26 @@ class HomeFragment : Fragment() {
         //refresh graph
         barChart.animateY(1800)
 
+        val connectedLabel = view.findViewById<TextView>(R.id.connectedText)
+        connectedLabel.textSize = 16F
+        connectedLabel.setTextColor(Color.parseColor("#ff0000"))
+        connectedLabel.text = "NOT CONNECTED TO QUILT"
+
         val delay = 10000L
         RepeatHelper.repeatDelayed(delay) {
             isConnected()
+            if (connected){
+                connectedLabel.setTextColor(Color.parseColor("#00ff00"))
+                connectedLabel.text = "CONNECTED TO QUILT"
+            }
+            else{connectedLabel.setTextColor(Color.parseColor("#ff0000"))
+                connectedLabel.text = "NOT CONNECTED TO QUILT"
+            }
         }
+
+
+
+
 
 
     }
